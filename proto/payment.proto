@@ -6,6 +6,7 @@ option go_package = "github.com/agilitysH/ap2-generated/paymentpb;paymentpb";
 
 service PaymentService {
   rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }
 
 message PaymentRequest {
@@ -19,4 +20,17 @@ message PaymentResponse {
   string transaction_id = 3;
   int64 amount = 4;
   string status = 5;
+}
+
+message ListPaymentsRequest {
+  string status = 1; // "Authorized" or "Declined"
+}
+
+message ListPaymentsResponse {
+  repeated PaymentResponse payments = 1;
+}
+
+service PaymentService{
+  rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
+  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
 }
