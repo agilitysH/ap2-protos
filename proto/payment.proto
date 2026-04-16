@@ -29,8 +29,3 @@ message ListPaymentsRequest {
 message ListPaymentsResponse {
   repeated PaymentResponse payments = 1;
 }
-
-service PaymentService {
-  rpc ProcessPayment(PaymentRequest) returns (PaymentResponse);
-  rpc ListPayments(ListPaymentsRequest) returns (ListPaymentsResponse);
-}
